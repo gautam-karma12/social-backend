@@ -1,24 +1,27 @@
-// mysql://root:TGsTUzNlEcmKFRUcHibfOrzAykFrKYAE@shinkansen.proxy.rlwy.net:36473/railway
+
 {
   "development": {
     "username": "root",
     "password": "TGsTUzNlEcmKFRUcHibfOrzAykFrKYAE",
     "database": "railway",
     "host": "shinkansen.proxy.rlwy.net",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": 36473
   },
   "test": {
     "username": "root",
     "password": "TGsTUzNlEcmKFRUcHibfOrzAykFrKYAE",
     "database": "railway",
     "host": "shinkansen.proxy.rlwy.net",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": 36473
   },
   "production": {
     "username": "root",
     "password": "TGsTUzNlEcmKFRUcHibfOrzAykFrKYAE",
     "database": "railway",
     "host": "shinkansen.proxy.rlwy.net",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": 36473
   }
 }
