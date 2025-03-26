@@ -1,23 +1,27 @@
+
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "database_social",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "password": "TGsTUzNlEcmKFRUcHibfOrzAykFrKYAE",
+    "database": "railway",
+    "host": "shinkansen.proxy.rlwy.net",
+    "dialect": "mysql",
+    "port": 36473
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "password": "TGsTUzNlEcmKFRUcHibfOrzAykFrKYAE",
+    "database": "railway",
+    "host": "shinkansen.proxy.rlwy.net",
+    "dialect": "mysql",
+    "port": 36473
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "password": "TGsTUzNlEcmKFRUcHibfOrzAykFrKYAE",
+    "database": "railway",
+    "host": "shinkansen.proxy.rlwy.net",
+    "dialect": "mysql",
+    "port": 36473
   }
 }
