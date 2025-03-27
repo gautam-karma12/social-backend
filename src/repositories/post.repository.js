@@ -55,7 +55,7 @@ export default {
       const userId = req.user.id; // Get the current authenticated user's ID
 
       const otherPosts = await post.findAll({
-        where: { userId: { [Op.ne]: userId } }, // Exclude current user's posts
+        // where: { userId: { [Op.ne]: userId } }, // Exclude current user's posts
         include: [
           {
             model: user,
