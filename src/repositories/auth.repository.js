@@ -65,6 +65,7 @@ export default {
 			);
 			return {
 				name: userData.name,
+				userId: userData.id,
 				email: userData.email,
 				token,
 				success: true,
