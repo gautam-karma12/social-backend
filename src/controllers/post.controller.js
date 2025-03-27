@@ -135,8 +135,8 @@ export default {
 			const result = await postRepository.followUser(req);
 			res.status(200).json({
 				data: result,
-				message: "Followed successfully",
-				success: true,
+				message: result.message,
+				success: result.status,
 			});
 		} catch (err) {
 			res.status(500).json({
@@ -149,10 +149,10 @@ export default {
 	async unFollowUser(req, res, next) {
 		try {
 			const result = await postRepository.unFollowUser(req);
-			res.status(200).json({
+			res.status(201).json({
 				data: result,
-				message: "Un-Followed successfully",
-				success: true,
+				message: result.message,
+				success: result.success,
 			});
 		} catch (err) {
 			res.status(500).json({

@@ -75,39 +75,71 @@ export default {
 	},
 	async getLoggedInUserProfile(req) {
 		try {
-			// Extract the logged-in user's ID from the JWT token
-			const userId = req.user.id;
-
-			// Fetch the user details
-			const userData = await user.findByPk(userId, {
-				attributes: ["id", "username", "email", "profilePic"],
-			});
-			if (!userData) {
-				return {
-					message: "User not found",
-					success: false,
-				};
-			}
-
-			// Fetch followers count
-			const followersCount = await follow.count({
-				where: { followingId: userId },
-			});
-
-			// Fetch following count
-			const followingCount = await follow.count({
-				where: { followerId: userId },
-			});
+		  // Extract the logged-in user's ID from the JWT token
+		  const userId = req.user.id;
+	
+		  // Fetch user details
+		  const userData = await user.findByPk(userId, {
+			attributes: ["id", "username", "email", "profilePic"],
+		  });
+		  if (!userData) {
 			return {
-				id: userData.id,
-				username: userData.username,
-				email: userData.email,
-				profileImage: userData.profilePic,
-				followersCount,
-				followingCount,
+			  message: "User not found",
+			  success: false,
 			};
+		  }
+	
+		  // Fetch followers list (users who follow the logged-in user)
+		  const followers = await follow.findAll({
+			where: { followingId: userId }, // Who is following this user
+			include: [
+			  {
+				model: user,
+				as: "Follower", // Matches alias in Follow model
+				attributes: ["id", "username", "profilePic"],
+			  },
+			],
+		  });
+	
+		  // Fetch following list (users whom this user follows)
+		  const following = await follow.findAll({
+			where: { followerId: userId }, // Whom this user follows
+			include: [
+			  {
+				model: user,
+				as: "Following", // Matches alias in Follow model
+				attributes: ["id", "username", "profilePic"],
+			  },
+			],
+		  });
+	
+		  // Format followers and following data
+		  const followersList = followers.map((f) => ({
+			id: f.Follower.id,
+			username: f.Follower.username,
+			profileImage: f.Follower.profilePic,
+		  }));
+	
+		  const followingList = following.map((f) => ({
+			id: f.Following.id,
+			username: f.Following.username,
+			profileImage: f.Following.profilePic,
+		  }));
+	
+		  // Return final response
+		  return {
+			id: userData.id,
+			username: userData.username,
+			email: userData.email,
+			profileImage: userData.profilePic,
+			followersCount: followersList.length,
+			followingCount: followingList.length,
+			followers: followersList,
+			following: followingList,
+		  };
 		} catch (error) {
-			console.log(error);
+		  console.log(error);
+		  return { message: "Something went wrong", success: false };
 		}
-	},
+	  },
 };

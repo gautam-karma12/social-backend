@@ -1,4 +1,4 @@
-const multer = require("multer");
+import multer from 'multer';
 
 
 // Set storage engine
